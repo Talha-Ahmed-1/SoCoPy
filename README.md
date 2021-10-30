@@ -1,0 +1,2 @@
+# SoCoPy
+SoC in Python
