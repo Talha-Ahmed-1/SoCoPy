@@ -2,7 +2,7 @@ from myhdl import *
 import random
 
 @block
-def typeDecode(opCode, RType, Load, Store, Branch, IType, Jalr, Jal, Lui):
+def TypeDecode(opCode, RType, Load, Store, Branch, IType, Jalr, Jal, Lui):
 
     @always_comb
     def comb():
