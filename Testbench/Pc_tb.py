@@ -1,3 +1,6 @@
+from myhdl import *
+from Core import PC
+
 @block
 def testing():
     pc_input, pc, pc4 = [Signal(intbv(0,0,2**DW)) for i in range(3)]
