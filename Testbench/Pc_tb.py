@@ -1,5 +1,4 @@
 from myhdl import *
-from Core import PC
 
 @block
 def testing():
