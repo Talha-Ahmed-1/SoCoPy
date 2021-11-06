@@ -1,7 +1,7 @@
 from myhdl import *
 
 @block
-def controlDecode(
+def ControlDecode(
                     RType,
                     Load,
                     Store,
@@ -75,7 +75,7 @@ def controlDecode(
 #     int_signals = [Signal(intbv(0)) for i in range(4)]
 
 #     itd_1 = typeDecode(opCode, *types)
-#     cd = controlDecode(*types, *bool_signals, *int_signals )
+#     cd = ControlDecode(*types, *bool_signals, *int_signals )
 
 #     @instance
 #     def stimulus():
