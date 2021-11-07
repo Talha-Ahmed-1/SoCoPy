@@ -59,8 +59,8 @@ def Simulate():
 
     return run, immGen
 
-tb = Simulate()
-tb.run_sim()
+# tb = Simulate()
+# tb.run_sim()
 
 
 # Only run when u want verilog of this module

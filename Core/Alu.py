@@ -55,10 +55,10 @@ def ALU(in1, in2, control, out):
 
     return run
 
-in1 = Signal(intbv(0, -DW, DW))
-in2 = Signal(intbv(0, -DW, DW))
-out = Signal(intbv(0, -DW, DW))
-control = Signal(intbv(0, 0, 32))
+# in1 = Signal(intbv(0, -DW, DW))
+# in2 = Signal(intbv(0, -DW, DW))
+# out = Signal(intbv(0, -DW, DW))
+# control = Signal(intbv(0, 0, 32))
 
-alu = ALU(in1, in2, control, out)
+# alu = ALU(in1, in2, control, out)
 # alu.convert('Verilog')

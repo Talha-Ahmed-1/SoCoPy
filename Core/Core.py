@@ -1,6 +1,6 @@
 from myhdl import *
 from PC import PC
-from Common.loadmemoryfromfile import loadmemoryfromfile
+# from Common.loadmemoryfromfile import loadmemoryfromfile
 from InstructionMemory import InstructionMemory
 from Control import ControlUnit
 from RegisterFile import RegisterFile
@@ -9,6 +9,10 @@ from AluCtrl import AluControl
 from Alu import ALU
 from JalrTarget import JalrTarget
 from DataMemory import DataMemory
+
+def loadmemoryfromfile(pathToFile):
+    file = open(pathToFile, "r")
+    return tuple([int("0x"+inst, 16) for inst in open(pathToFile, "r").read().split("\n")])
 
 @block
 def Core(clk,reset_n):
@@ -19,7 +23,7 @@ def Core(clk,reset_n):
         pc_in, pc_out, pc4_out = [Signal(intbv(0, min=0, max=(2**32)-1)) for i in range(3)]
         pc = PC(clk, pc_in, pc_out, pc4_out)
 
-        instructions = loadmemoryfromfile("/home/kraken/Desktop/Instruction.txt")
+        instructions = loadmemoryfromfile("/home/talha/SoCoPy/Instruction.txt")
         inst_out = Signal(intbv(0, min=0 ,max=(2**32)-1))
         instr_memory = InstructionMemory(pc_out, inst_out, instructions)
 
@@ -40,6 +44,8 @@ def Core(clk,reset_n):
         AluControl(ctrl_int_signals[0], inst_out[14:12], inst_out[30], alu_ctrl_pin)
 
         alu_a, alu_b = [Signal(intbv(0, min=0, max=(2**32)-1)) for i in range(2)]
+        alu_out = Signal(intbv(0, min=0, max=(2**32)-1))
+        alu = ALU(alu_a, alu_b, alu_ctrl_pin, alu_out)
         if ctrl_int_signals[1] == 1:
             alu_a.next = pc_out
         elif ctrl_int_signals[1] == 2:
@@ -56,8 +62,7 @@ def Core(clk,reset_n):
         else:
             alu_b.next = reg_read_data2
 
-        alu_out = Signal(intbv(0, min=0, max=(2**32)-1))
-        alu = ALU(alu_a, alu_b, alu_ctrl_pin, alu_out)
+        
 
         jalr_out = Signal(intbv(0, min=0, max=(2**32)-1))
         jalr = JalrTarget(reg_read_data1, imms[4], jalr_out)
@@ -80,3 +85,27 @@ def Core(clk,reset_n):
             reg_write_data.next = alu_out
 
     return top
+
+@block
+def Simulate():
+    clk = Signal(bool(0))
+    # reset_n = Signal(bool(1))
+    reset_n = ResetSignal(0, active=0, isasync=True)
+    core = Core(clk, reset_n)
+    @instance
+    def clockGen():
+        c = 0
+        while c <= 100:
+            clk.next = not clk
+            c+=1
+            yield delay(10)
+
+    @instance
+    def stimulus():
+        yield delay(10)
+
+    return stimulus, clockGen, core
+
+tb = Simulate()
+tb.config_sim(trace=True)
+tb.run_sim()

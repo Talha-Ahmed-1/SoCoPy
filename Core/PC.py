@@ -38,6 +38,6 @@ def testing():
     
     return pCounter, run, clkgen
 
-tb = testing()
-tb.config_sim(trace=True)
-tb.run_sim()
+# tb = testing()
+# tb.config_sim(trace=True)
+# tb.run_sim()

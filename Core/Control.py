@@ -1,6 +1,6 @@
 from myhdl import *
 from TypeDecode import TypeDecode
-from ControlDecode import controlDecode
+from ControlDecode import ControlDecode
 
 @block 
 def ControlUnit(opCode,

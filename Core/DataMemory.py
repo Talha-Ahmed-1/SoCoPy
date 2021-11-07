@@ -19,17 +19,17 @@ def DataMemory(clk, addr, data_in, data_out, we, rd):
 
     return read, write
 
-def toGenerateVerilog():
-    clk = Signal(bool(0))
-    addr = Signal(intbv(0)[10:])
-    data_in = Signal(intbv(0, -DW, DW))
-    data_out = Signal(intbv(0, -DW, DW))
-    we = Signal(bool(0))
-    rd = Signal(bool(0))
-    # mem_data = Signal(intbv(0)[32:])
+# def toGenerateVerilog():
+#     clk = Signal(bool(0))
+#     addr = Signal(intbv(0)[10:])
+#     data_in = Signal(intbv(0, -DW, DW))
+#     data_out = Signal(intbv(0, -DW, DW))
+#     we = Signal(bool(0))
+#     rd = Signal(bool(0))
+#     # mem_data = Signal(intbv(0)[32:])
 
-    dmem = DataMemory(clk, addr, data_in, data_out, we, rd)
+#     dmem = DataMemory(clk, addr, data_in, data_out, we, rd)
 
-    dmem.convert('Verilog')
+#     dmem.convert('Verilog')
 
-toGenerateVerilog()
+# toGenerateVerilog()
