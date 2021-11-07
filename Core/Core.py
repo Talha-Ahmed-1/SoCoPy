@@ -90,7 +90,7 @@ def Core(clk,reset_n):
 def Simulate():
     clk = Signal(bool(0))
     # reset_n = Signal(bool(1))
-    reset_n = ResetSignal(0, active=0, isasync=True)
+    reset_n = ResetSignal(0, active=0, isasync=False)
     core = Core(clk, reset_n)
     @instance
     def clockGen():
@@ -103,8 +103,11 @@ def Simulate():
     @instance
     def stimulus():
         yield delay(10)
+        reset_n.next = 1
 
     return stimulus, clockGen, core
+
+ACTIVE_LOW, INACTIVE_HIGH = 0, 1
 
 tb = Simulate()
 tb.config_sim(trace=True)
