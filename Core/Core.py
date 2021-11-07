@@ -51,7 +51,7 @@ def Core(clk,reset_n):
             alu_b.next = imms[4]
         elif ctrl_int_signals[2] == 1  and ctrl_bool_signals[5] == True:
             alu_b.next = imms[0]
-        elif ctrl_int_signals[2] == 2 and alu.io.AluControlctrl_bool_signals[5] == True:
+        elif ctrl_int_signals[2] == 2 and ctrl_bool_signals[5] == True:
             alu_b.next = imms[3]
         else:
             alu_b.next = reg_read_data2
