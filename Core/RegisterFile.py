@@ -26,7 +26,7 @@ def RegisterFile(
     @always(clock.posedge)
     def write():
         if regWrite & int(ws) != 0:
-            register[int(wd)].next = wd
+            register[int(ws)].next = wd
 
 
     return read, write
