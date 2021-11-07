@@ -1,7 +1,7 @@
 from myhdl import *
 
 @block
-def controlDecode(
+def ControlDecode(
                     RType,
                     Load,
                     Store,

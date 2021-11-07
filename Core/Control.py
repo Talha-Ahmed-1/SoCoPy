@@ -19,7 +19,7 @@ def ControlUnit(opCode,
     types = [Signal(bool(0)) for i in range(8)]
 
     itd = TypeDecode(opCode, *types)
-    cd = controlDecode(*types, MemWrite,Branch,MemRead,RegWrite,MemToReg,Operand_b_Sel,AluOp,Operand_a_Sel,ExtendSel,NextPcSel)
+    cd = ControlDecode(*types, MemWrite,Branch,MemRead,RegWrite,MemToReg,Operand_b_Sel,AluOp,Operand_a_Sel,ExtendSel,NextPcSel)
 
     return itd,cd
 
