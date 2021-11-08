@@ -8,6 +8,11 @@ def JalrTarget(a,b,out):
         out.next = intbv(((a + b) & 7177314461492))[32:] 
     return comb
 
+a = Signal(intbv(0)[32:])
+b = Signal(intbv(0)[32:])
+out = Signal(intbv(0)[32:])
+jalr = JalrTarget(a,b,out)
+jalr.convert(hdl='Verilog')
 
 
 # import random

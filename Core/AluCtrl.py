@@ -1,5 +1,7 @@
 from myhdl import *
 
+from Core.ControlDecode import AluOp
+
 @block
 def AluControl(AluOp, Func3, Func7, AluCtrl):
 
@@ -28,3 +30,10 @@ def AluControl(AluOp, Func3, Func7, AluCtrl):
 
     return comb()
         
+AluOp = Signal(intbv(0, min=0, max=3))
+Func3 = Signal(intbv(0, min=0, max=3))
+Func7 = Signal(intbv(0, min=0, max=7))
+AluCtrl = Signal(intbv(0, min=0, max=(2**5)-1))
+
+aluctrl = AluControl(AluOp, Func3, Func7, AluCtrl)
+aluctrl.convert(hdl='Verilog')

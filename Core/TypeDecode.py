@@ -6,7 +6,7 @@ def TypeDecode(opCode, RType, Load, Store, Branch, IType, Jalr, Jal, Lui):
 
     @always_comb
     def comb():
-        RType.next,Load.next, Store.next, Branch.next, IType.next, Jalr.next, Jal.next, Lui.next = [False for i in range(8)]
+        # RType.next,Load.next, Store.next, Branch.next, IType.next, Jalr.next, Jal.next, Lui.next = [False for i in range(8)]
         
         
         if opCode == 51:
@@ -28,8 +28,12 @@ def TypeDecode(opCode, RType, Load, Store, Branch, IType, Jalr, Jal, Lui):
         
     return comb
 
-# opCodes = [51,3,35,99,19,103,111,55]
+opCodes = [51,3,35,99,19,103,111,55]
+types = [Signal(bool(0)) for i in range(8)]
+opCode = Signal(intbv(0, min=0, max=112))
 
+itd_1 = TypeDecode(opCode, *types)
+itd_1.convert('Verilog')
 # @block
 # def itdTest():
 
