@@ -10,21 +10,21 @@ def TypeDecode(opCode, RType, Load, Store, Branch, IType, Jalr, Jal, Lui):
         
         
         if opCode == 51:
-            RType.next = True
+            RType.next = 1
         elif opCode == 3:
-            Load.next = True
+            Load.next = 1
         elif opCode == 35:
-            Store.next = True
+            Store.next = 1
         elif opCode == 99:
-            Branch.next = True
+            Branch.next = 1
         elif opCode == 19:
-            IType.next = True
+            IType.next = 1
         elif opCode == 103:
-            Jalr.next = True
+            Jalr.next = 1
         elif opCode == 111:
-            Jal.next = True
+            Jal.next = 1
         elif opCode == 55:
-            Lui.next = True
+            Lui.next = 1
         
     return comb
 
